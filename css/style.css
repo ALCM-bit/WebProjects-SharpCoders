@@ -15,14 +15,17 @@ font-family: 'Tourney', cursive; */
 }
 
 body {
-  background-color: var(--background-color);
+  background-color: var(--background-color) !important;
+  min-width: 420px;
   /*
   em proporcional a fonte da página
   vh proporcional a altura
   vw proporcional a largura
   */
 }
-
+nav {
+  font-size: 20px;
+}
 #principal-container {
   margin-top: 50px;
   display: flex;
@@ -40,6 +43,7 @@ body {
   color: #000;
   display: flex;
   flex-direction: column;
+  border-radius: 0.2em;
 }
 
 #calculator h2 {
@@ -75,7 +79,7 @@ body {
   background-color: #fa67b9;
   border-radius: 0.6em;
   height: 3em;
-  font-size: 1.2em;
+  font-size: 1.4em;
   font-weight: bold;
   cursor: pointer;
 }
@@ -94,10 +98,11 @@ body {
 }
 
 #buttons-container #equal-btn {
-  background-color: orange;
+  background-color: #fa079d;
 }
-
+#buttons-container .dot {
+  background-color: #fa079d;
+}
 #buttons-container .simbol {
-  font-size: 1.3em;
   font-weight: bold;
 }
