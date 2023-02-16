@@ -1,10 +1,9 @@
 * {
   margin: 0;
   padding: 0;
-
   box-sizing: border-box;
   font-family: "Tourney", cursive;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 :root {
@@ -23,13 +22,14 @@ body {
   vw proporcional a largura
   */
 }
-body > section #principal-container {
+
+#principal-container {
+  margin-top: 50px;
   display: flex;
   align-items: center; /*horizontal*/
   font-size: 20px;
   justify-content: center; /*vertical*/
   padding: 3em;
-  border: 3px solid red;
   min-width: 400px;
 }
 #calculator {
@@ -72,7 +72,7 @@ body > section #principal-container {
 }
 #buttons-container button {
   border: #202723 solid 1px;
-  background: #fa67b9;
+  background-color: #fa67b9;
   border-radius: 0.6em;
   height: 3em;
   font-size: 1.2em;
@@ -81,7 +81,7 @@ body > section #principal-container {
 }
 
 #buttons-container button:hover {
-  background-color: #8da0a4;
+  background-color: #fd705b;
   border-color: #01483c;
 }
 
@@ -95,4 +95,9 @@ body > section #principal-container {
 
 #buttons-container #equal-btn {
   background-color: orange;
+}
+
+#buttons-container .simbol {
+  font-size: 1.3em;
+  font-weight: bold;
 }
