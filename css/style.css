@@ -9,7 +9,7 @@
 
 :root {
   --background-color: #202723;
-  --primary-color: #5c7470;
+  --primary-color: #df52e3;
   --secondary-color: #8da0a4;
   /* font-family: 'Source Sans Pro', sans-serif;
 font-family: 'Tourney', cursive; */
@@ -19,6 +19,7 @@ body {
   background-color: var(--background-color);
   display: flex;
   align-items: center; /*horizontal*/
+  font-size: 20px;
   justify-content: center; /*vertical*/
   padding: 3em;
 
@@ -32,7 +33,7 @@ body {
 #calculator {
   width: 500px;
   padding: 0.5em;
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
   color: #000;
   display: flex;
   flex-direction: column;
