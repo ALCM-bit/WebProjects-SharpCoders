@@ -4,7 +4,7 @@
 
   box-sizing: border-box;
   font-family: "Tourney", cursive;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 :root {
@@ -17,20 +17,23 @@ font-family: 'Tourney', cursive; */
 
 body {
   background-color: var(--background-color);
-  display: flex;
-  align-items: center; /*horizontal*/
-  font-size: 20px;
-  justify-content: center; /*vertical*/
-  padding: 3em;
-
   /*
   em proporcional a fonte da página
   vh proporcional a altura
   vw proporcional a largura
   */
 }
-
+body > section #principal-container {
+  display: flex;
+  align-items: center; /*horizontal*/
+  font-size: 20px;
+  justify-content: center; /*vertical*/
+  padding: 3em;
+  border: 3px solid red;
+  min-width: 400px;
+}
 #calculator {
+  margin: auto;
   width: 500px;
   padding: 0.5em;
   background-color: var(--primary-color);
@@ -69,6 +72,7 @@ body {
 }
 #buttons-container button {
   border: #202723 solid 1px;
+  background: #fa67b9;
   border-radius: 0.6em;
   height: 3em;
   font-size: 1.2em;
