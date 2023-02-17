@@ -60,6 +60,7 @@ nav {
   overflow-wrap: break-word;
   padding: 0.2em;
   min-height: 1.7em;
+  background-color: #6fa7e3;
 }
 #current-operation {
   overflow-wrap: break-word;
@@ -67,6 +68,8 @@ nav {
   min-height: 1.7em;
   font-size: 3em;
   font-weight: 800;
+  margin-bottom: 10px;
+  background-color: #7cdcfd;
 }
 
 #buttons-container {
@@ -98,10 +101,10 @@ nav {
 }
 
 #buttons-container #equal-btn {
-  background-color: #fa079d;
+  background-color: #fa67b9;
 }
 #buttons-container .dot {
-  background-color: #fa079d;
+  background-color: #fa67b9;
 }
 #buttons-container .simbol {
   font-weight: bold;
