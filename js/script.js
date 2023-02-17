@@ -1,40 +1,41 @@
-//Seleção dos elementos
-const buttons = document.querySelectorAll("#buttons-container button");
-const lastOperationText = document.querySelector("#last-operation");
+const previousOperationText = document.querySelector("#last-operation");
 const currentOperationText = document.querySelector("#current-operation");
+const buttons = document.querySelectorAll("#buttons-container button");
 
 class Calculator {
-  constructor(lastOperationText, currentOperationText) {
-    this.lastOperationText = lastOperationText;
+  constructor(previousOperationText, currentOperationText) {
+    this.previousOperationText = previousOperationText;
     this.currentOperationText = currentOperationText;
     this.currentOperation = "";
   }
 
-  //add digit to calculator screem
+  // add digit to calculator screen
   addDigit(digit) {
     console.log(digit);
-    //check if current operation have a dot
+    // Check if number already has a dot
     if (digit === "." && this.currentOperationText.innerText.includes(".")) {
       return;
     }
+
     this.currentOperation = digit;
     this.updateScreen();
   }
 
-  //Process all calculator operations
+  // process all calculator operations
   processOperation(operation) {
-    //check if current is empty
+    // Check if current value is empty
     if (this.currentOperationText.innerText === "" && operation !== "C") {
-      //change operation
-      if (this.lastOperationText.innerText !== "") {
+      // Change operation
+      if (this.previousOperationText.innerText !== "") {
         this.changeOperation(operation);
       }
       return;
     }
-    //Get current and last value
+
+    // Get current and previous values
     let operationValue;
-    const previous = +this.lastOperationText.innerText.split(" ")[0];
-    const current = +this.currentOperationText.innerText;
+    let previous = +this.previousOperationText.innerText.split(" ")[0];
+    let current = +this.currentOperationText.innerText;
 
     switch (operation) {
       case "+":
@@ -45,33 +46,32 @@ class Calculator {
         operationValue = previous - current;
         this.updateScreen(operationValue, operation, current, previous);
         break;
-      case "/":
-        operationValue = previous / current;
-        this.updateScreen(operationValue, operation, current, previous);
-        break;
       case "*":
         operationValue = previous * current;
+        this.updateScreen(operationValue, operation, current, previous);
+        break;
+      case "/":
+        operationValue = previous / current;
         this.updateScreen(operationValue, operation, current, previous);
         break;
       case "DEL":
         this.processDelOperator();
         break;
       case "CE":
-        this.processClearCurrentOperation();
+        this.processClearCurrentOperator();
         break;
       case "C":
-        this.processEqualOperator();
+        this.processClearOperator();
         break;
       case "=":
-        this.processClearOperation();
+        this.processEqualOperator();
         break;
       default:
         return;
     }
   }
 
-  //change values of calculator screen
-
+  // Change values of calculator screen
   updateScreen(
     operationValue = null,
     operation = null,
@@ -79,62 +79,64 @@ class Calculator {
     previous = null
   ) {
     if (operationValue === null) {
+      // Append number to current value
       this.currentOperationText.innerText += this.currentOperation;
     } else {
-      //checagem if value is zero, if it is just add current value
+      // Check if value is zero, if is just add current value
       if (previous === 0) {
         operationValue = current;
       }
-      //add current value to previous
-      this.lastOperationText.innerText = `${operationValue} ${operation}`;
+      // Add current value to previous
+      this.previousOperationText.innerText = `${operationValue} ${operation}`;
       this.currentOperationText.innerText = "";
     }
   }
 
   // Change math operation
   changeOperation(operation) {
-    const mathOPerations = ["+", "-", "/", "*"];
+    const mathOperations = ["*", "-", "+", "/"];
 
-    if (!mathOPerations.includes(operation)) {
+    if (!mathOperations.includes(operation)) {
       return;
     }
 
-    this.lastOperationText.innerText =
-      this.lastOperationText.innerText.slice(0, -1) + operation;
+    this.previousOperationText.innerText =
+      this.previousOperationText.innerText.slice(0, -1) + operation;
   }
 
-  //Delete the last digit
+  // Delete a digit
   processDelOperator() {
-    this.currentOperationText.innerText = this.currentOperationText.slice(
-      0,
-      -1
-    );
+    this.currentOperationText.innerText =
+      this.currentOperationText.innerText.slice(0, -1);
   }
-  //Clear current operation
-  processClearCurrentOperation() {
+
+  // Clear current operation
+  processClearCurrentOperator() {
     this.currentOperationText.innerText = "";
   }
 
-  // clear all operation
-  processClearOperation() {
+  // Clear all operations
+  processClearOperator() {
     this.currentOperationText.innerText = "";
-    this.lastOperationText.innerText = "";
+    this.previousOperationText.innerText = "";
   }
 
   // Process an operation
   processEqualOperator() {
-    const operation = lastOperationText.innerText.split(" ")[1];
+    let operation = this.previousOperationText.innerText.split(" ")[1];
+
     this.processOperation(operation);
   }
 }
 
-const calc = new Calculator(lastOperationText, currentOperationText);
+const calc = new Calculator(previousOperationText, currentOperationText);
 
-//Eventos para a calculadora funcionar
 buttons.forEach((btn) => {
-  btn.addEventListener("click", (event) => {
-    const value = event.target.innerText;
+  btn.addEventListener("click", (e) => {
+    const value = e.target.innerText;
+
     if (+value >= 0 || value === ".") {
+      console.log(value);
       calc.addDigit(value);
     } else {
       calc.processOperation(value);
