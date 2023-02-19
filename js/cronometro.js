@@ -1,5 +1,6 @@
 const startButton = document.querySelector("#control-painel .start-button");
 const stopButton = document.querySelector("#control-painel .stop-button");
+const resetButton = document.querySelector("#control-painel .reset-button");
 const screenContent = document.querySelector("#screen");
 let hours = 0;
 let minutes = 0;
@@ -51,5 +52,11 @@ startButton.addEventListener("click", (event) => {
 stopButton.addEventListener("click", (event) => {
   const value = event.target.innerText;
   pause();
+  console.log(value);
+});
+
+resetButton.addEventListener("click", (event) => {
+  const value = event.target.innerText;
+  reset();
   console.log(value);
 });
